@@ -1,0 +1,61 @@
+identity:
+  name: whapi_trigger
+  author: whapi-cloud
+  label:
+    en_US: Whapi Trigger
+    zh_Hans: Whapi 触发器
+  description:
+    en_US: Receive Whapi webhook events for messages and groups.
+    zh_Hans: 接收 Whapi 消息与群组 webhook 事件。
+  icon: icon.svg
+  tags: []
+
+subscription_constructor:
+  credentials_schema:
+    access_token:
+      type: secret-input
+      required: true
+      label:
+        en_US: Access Token
+        zh_Hans: 访问令牌
+      placeholder:
+        en_US: Channel token from Whapi Panel
+        zh_Hans: 来自 Whapi 面板的频道令牌
+      url: https://panel.whapi.cloud/
+    api_base_url:
+      type: text-input
+      required: false
+      default: https://gate.whapi.cloud
+      label:
+        en_US: API base URL
+        zh_Hans: API 基础 URL
+  parameters:
+    - name: event_families
+      type: checkbox
+      multiple: true
+      required: true
+      default:
+        - messages
+      label:
+        en_US: Trigger on
+        zh_Hans: 触发事件
+      help:
+        en_US: Same as n8n Whapi Trigger — subscribes to all HTTP methods for selected families.
+        zh_Hans: 与 n8n Whapi Trigger 相同 — 为所选类型订阅全部 HTTP 方法。
+      options:
+        - value: messages
+          label:
+            en_US: Messages events
+            zh_Hans: 消息事件
+        - value: groups
+          label:
+            en_US: Groups events
+            zh_Hans: 群组事件
+
+events:
+  - events/whapi_messages.yaml
+  - events/whapi_groups.yaml
+
+extra:
+  python:
+    source: provider/whapi_trigger.py

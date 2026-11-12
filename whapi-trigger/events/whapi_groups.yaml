@@ -1,0 +1,24 @@
+identity:
+  name: whapi_groups
+  author: whapi-cloud
+  label:
+    en_US: Whapi Groups
+    zh_Hans: Whapi 群组
+description:
+  en_US: Fires when Whapi sends a groups webhook (post, put, patch, delete).
+  zh_Hans: Whapi 推送 groups 类 webhook 时触发。
+parameters: []
+output_schema:
+  type: object
+  properties:
+    channel_id:
+      type: string
+    event_type:
+      type: string
+    event_action:
+      type: string
+    groups:
+      type: array
+extra:
+  python:
+    source: events/whapi_groups.py

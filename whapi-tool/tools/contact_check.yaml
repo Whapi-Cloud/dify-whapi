@@ -1,0 +1,26 @@
+identity:
+  name: contact_check
+  author: whapi-cloud
+  label:
+    en_US: Check Contact
+    zh_Hans: 检查联系人
+description:
+  human:
+    en_US: Check whether a phone number is registered on WhatsApp.
+    zh_Hans: 检查手机号是否已注册 WhatsApp。
+  llm: Check if a phone number has WhatsApp via Whapi contacts API.
+parameters:
+  - name: contact
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Phone number
+      zh_Hans: 手机号
+    human_description:
+      en_US: Phone number in international format without plus, e.g. 447911123456
+      zh_Hans: 国际格式手机号，不含加号
+    llm_description: Phone number to check on WhatsApp
+extra:
+  python:
+    source: tools/contact_check.py

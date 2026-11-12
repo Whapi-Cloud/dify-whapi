@@ -1,0 +1,33 @@
+version: 0.0.1
+type: plugin
+author: whapi-cloud
+name: whapi_trigger
+label:
+  en_US: Whapi Trigger
+  zh_Hans: Whapi 触发器
+description:
+  en_US: Start Dify workflows when Whapi.Cloud sends message or group webhooks.
+  zh_Hans: 当 Whapi.Cloud 推送消息或群组 webhook 时启动 Dify 工作流。
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+    app:
+      enabled: true
+plugins:
+  triggers:
+    - provider/whapi_trigger.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: "1.10.0"
+created_at: "2025-11-12T00:00:00.000000Z"
+privacy: PRIVACY.md

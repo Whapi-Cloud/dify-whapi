@@ -1,0 +1,47 @@
+identity:
+  author: whapi-cloud
+  name: whapi
+  label:
+    en_US: Whapi.Cloud
+    zh_Hans: Whapi.Cloud
+  description:
+    en_US: WhatsApp API gateway for sending messages and checking contacts.
+    zh_Hans: 用于发送消息与检查联系人的 WhatsApp API 网关。
+  icon: icon.svg
+  tags:
+    - social
+credentials_for_provider:
+  access_token:
+    type: secret-input
+    required: true
+    label:
+      en_US: Access Token
+      zh_Hans: 访问令牌
+    placeholder:
+      en_US: Channel token from Whapi Panel
+      zh_Hans: 来自 Whapi 面板的频道令牌
+    help:
+      en_US: Copy the token from https://panel.whapi.cloud/channels/{channel-id}
+      zh_Hans: 从 Whapi 面板复制频道令牌
+    url: https://panel.whapi.cloud/
+  channel_id:
+    type: text-input
+    required: false
+    label:
+      en_US: Channel ID (optional)
+      zh_Hans: 频道 ID（可选）
+  api_base_url:
+    type: text-input
+    required: false
+    default: https://gate.whapi.cloud
+    label:
+      en_US: API base URL
+      zh_Hans: API 基础 URL
+tools:
+  - tools/message_send.yaml
+  - tools/message_get.yaml
+  - tools/contact_check.yaml
+  - tools/api_request.yaml
+extra:
+  python:
+    source: provider/whapi.py

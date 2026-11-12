@@ -1,0 +1,75 @@
+identity:
+  name: api_request
+  author: whapi-cloud
+  label:
+    en_US: Custom API Request
+    zh_Hans: 自定义 API 请求
+description:
+  human:
+    en_US: Call any Whapi.Cloud REST endpoint not covered by other tools.
+    zh_Hans: 调用其他工具未覆盖的 Whapi.Cloud REST 接口。
+  llm: Perform an authenticated HTTP request to Whapi API. Path must start with / (e.g. /messages/text). Use body_json for POST/PATCH JSON body.
+parameters:
+  - name: method
+    type: select
+    required: true
+    default: GET
+    form: form
+    label:
+      en_US: HTTP method
+      zh_Hans: HTTP 方法
+    human_description:
+      en_US: HTTP method for the Whapi API call
+      zh_Hans: Whapi API 请求的 HTTP 方法
+    options:
+      - value: GET
+        label:
+          en_US: GET
+      - value: POST
+        label:
+          en_US: POST
+      - value: PUT
+        label:
+          en_US: PUT
+      - value: PATCH
+        label:
+          en_US: PATCH
+      - value: DELETE
+        label:
+          en_US: DELETE
+  - name: path
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: API path
+      zh_Hans: API 路径
+    human_description:
+      en_US: Path on gate.whapi.cloud starting with /, e.g. /limits
+      zh_Hans: 以 / 开头的 API 路径
+    llm_description: Path relative to gate.whapi.cloud, must start with /, e.g. /settings or /messages/text
+  - name: query_json
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Query JSON
+      zh_Hans: 查询参数 JSON
+    human_description:
+      en_US: Optional JSON object for URL query parameters
+      zh_Hans: 可选的 URL 查询参数 JSON 对象
+    llm_description: Optional JSON object for query string parameters
+  - name: body_json
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Body JSON
+      zh_Hans: 请求体 JSON
+    human_description:
+      en_US: Optional JSON object for request body on POST, PUT, PATCH
+      zh_Hans: POST/PUT/PATCH 的可选 JSON 请求体
+    llm_description: Optional JSON object request body for POST, PUT, PATCH
+extra:
+  python:
+    source: tools/api_request.py
