@@ -1,5 +1,7 @@
 # Dify × Whapi.Cloud
 
+https://github.com/Whapi-Cloud/dify-whapi
+
 Monorepo with two Dify plugins (parity with [n8n-nodes-whapi](https://github.com/Whapi-Cloud/n8n-nodes-whapi)):
 
 | Package | Purpose |
@@ -7,7 +9,9 @@ Monorepo with two Dify plugins (parity with [n8n-nodes-whapi](https://github.com
 | [`whapi-tool/`](whapi-tool/) | Outgoing API: send message, get message, check contact, **custom API request** |
 | [`whapi-trigger/`](whapi-trigger/) | Incoming webhooks: **messages** and **groups** event families (auto `PATCH /settings`) |
 
-Requires **Python 3.12** (Dify runner), `dify-plugin` SDK ≥ 0.6.0. Trigger plugin needs **Dify ≥ 1.10.0**.
+Requires **Python 3.12** (Dify runner), `dify-plugin` SDK ≥ 0.9.0. Trigger plugin needs **Dify ≥ 1.10.0**.
+
+Per-plugin documentation (Marketplace / install): **[whapi-tool/README.md](whapi-tool/README.md)** · **[whapi-trigger/README.md](whapi-trigger/README.md)**
 
 ## Quick start
 

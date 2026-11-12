@@ -22,8 +22,14 @@ resource:
 plugins:
   tools:
     - provider/whapi.yaml
+network:
+  domains:
+    - gate.whapi.cloud
+repo: https://github.com/Whapi-Cloud/dify-whapi
+contact: support@whapi.cloud
 meta:
   version: 0.0.1
+  minimum_dify_version: "1.0.0"
   arch:
     - amd64
     - arm64
@@ -31,5 +37,5 @@ meta:
     language: python
     version: "3.12"
     entrypoint: main
-created_at: "2025-11-12T00:00:00.000000Z"
+created_at: "2026-11-12T00:00:00.000000Z"
 privacy: PRIVACY.md
