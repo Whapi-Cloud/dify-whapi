@@ -26,7 +26,7 @@ network:
   domains:
     - gate.whapi.cloud
 repo: https://github.com/Whapi-Cloud/dify-whapi
-contact: support@whapi.cloud
+contact: care@whapi.cloud
 meta:
   version: 0.0.1
   minimum_dify_version: "1.0.0"

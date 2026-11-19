@@ -29,6 +29,9 @@ subscription_constructor:
       label:
         en_US: API base URL
         zh_Hans: API 基础 URL
+      help:
+        en_US: Default and recommended — https://gate.whapi.cloud. Leave as default unless Whapi support gives you a different gateway URL.
+        zh_Hans: 默认推荐 https://gate.whapi.cloud。除非 Whapi 支持另有说明，请保持默认。
   parameters:
     - name: event_families
       type: checkbox
@@ -40,8 +43,8 @@ subscription_constructor:
         en_US: Trigger on
         zh_Hans: 触发事件
       help:
-        en_US: Same as n8n Whapi Trigger — subscribes to all HTTP methods for selected families.
-        zh_Hans: 与 n8n Whapi Trigger 相同 — 为所选类型订阅全部 HTTP 方法。
+        en_US: Subscribes to Whapi webhook events for all HTTP methods in the selected families.
+        zh_Hans: 为所选事件类型订阅 Whapi webhook（对应 HTTP 方法）。
       options:
         - value: messages
           label:

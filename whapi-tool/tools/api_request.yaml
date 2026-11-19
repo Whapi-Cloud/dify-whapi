@@ -6,9 +6,9 @@ identity:
     zh_Hans: 自定义 API 请求
 description:
   human:
-    en_US: Call any Whapi.Cloud REST endpoint not covered by other tools.
-    zh_Hans: 调用其他工具未覆盖的 Whapi.Cloud REST 接口。
-  llm: Perform an authenticated HTTP request to Whapi API. Path must start with / (e.g. /messages/text). Use body_json for POST/PATCH JSON body.
+    en_US: Call any endpoint from the Whapi API docs (https://whapi.cloud/docs) — method, path, and JSON body on gate.whapi.cloud, using your channel token.
+    zh_Hans: 按 Whapi 文档（https://whapi.cloud/docs）调用任意接口：方法、路径与 JSON 请求体，使用频道令牌访问 gate.whapi.cloud。
+  llm: Perform an authenticated HTTP request to Whapi API per official docs. Path must start with / (e.g. /messages/text). Use body_json for POST/PATCH JSON body. Dedicated tools exist for common sends/checks; use this tool for other documented endpoints.
 parameters:
   - name: method
     type: select

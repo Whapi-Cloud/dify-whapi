@@ -37,6 +37,9 @@ credentials_for_provider:
     label:
       en_US: API base URL
       zh_Hans: API 基础 URL
+    help:
+      en_US: Default and recommended for all Whapi.Cloud channels — https://gate.whapi.cloud. Leave as default unless Whapi support gives you a different gateway URL.
+      zh_Hans: Whapi.Cloud 频道默认使用 https://gate.whapi.cloud。除非 Whapi 支持另有说明，请保持默认。
 tools:
   - tools/message_send.yaml
   - tools/message_get.yaml
