@@ -46,9 +46,20 @@ All tools and **Custom API Request** call this host (path + method from the [API
 | **Send Message** | Text, image, video, audio, document, contact — see [Whapi messaging docs](https://whapi.cloud/docs) for IDs and media parameters |
 | **Get Message** | Fetch by message ID |
 | **Check Contact** | Check whether a phone number is registered on WhatsApp |
-| **Custom API Request** | Call any endpoint from [whapi.cloud/docs](https://whapi.cloud/docs) (HTTP method, path, JSON body) |
+| **Custom API Request** | Call any endpoint from [whapi.cloud/docs](https://whapi.cloud/docs); see [safety notes](#custom-api-request-safety) below |
 
-Dedicated tools cover the actions most workflows use daily. We do not add a separate Dify tool for every Whapi endpoint. **Custom API Request** is the supported way to call any documented API: use your credentials, set method/path/body per the reference, and the plugin sends the request to `https://gate.whapi.cloud`.
+Dedicated tools cover the actions most workflows use daily. We do not add a separate Dify tool for every Whapi endpoint. **Custom API Request** is the supported way to call any other documented API on `https://gate.whapi.cloud`.
+
+### Custom API Request (safety)
+
+- **HTTP method** and **API path** are **workflow fields** (`form` in Dify) — you configure them in the tool node. The LLM must **not** pick the method or path on its own (reduces accidental destructive calls from agents).
+- **Query JSON** and **Body JSON** can still be filled from workflow variables or the model when your design requires dynamic payloads — only enable that where you trust the prompt and data flow.
+- **GET** — read-only against your channel (limits, messages, settings, etc.).
+- **POST / PUT / PATCH** — can **create or change** messages, chats, groups, channel **settings** (including webhooks), and other objects described in the Whapi docs.
+- **DELETE** — can **remove** messages and other resources where the API allows deletion.
+- Channel **webhook registration** for Dify is handled by the [**Whapi Trigger** plugin](https://github.com/Whapi-Cloud/dify-whapi/tree/main/whapi-trigger); avoid ad-hoc `PATCH /settings` in Custom API unless you know how it interacts with existing webhooks.
+- Use a dedicated tool (Send Message, etc.) when one exists. Reserve Custom API for endpoints not covered by built-in tools.
+- **Send Message** and other built-in tools also perform write operations; limit which Whapi tools are exposed to each agent or workflow.
 
 ## Using tools in Dify
 

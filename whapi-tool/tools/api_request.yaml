@@ -6,9 +6,9 @@ identity:
     zh_Hans: 自定义 API 请求
 description:
   human:
-    en_US: Call any endpoint from the Whapi API docs (https://whapi.cloud/docs) — method, path, and JSON body on gate.whapi.cloud, using your channel token.
-    zh_Hans: 按 Whapi 文档（https://whapi.cloud/docs）调用任意接口：方法、路径与 JSON 请求体，使用频道令牌访问 gate.whapi.cloud。
-  llm: Perform an authenticated HTTP request to Whapi API per official docs. Path must start with / (e.g. /messages/text). Use body_json for POST/PATCH JSON body. Dedicated tools exist for common sends/checks; use this tool for other documented endpoints.
+    en_US: Call a Whapi API endpoint from the docs (https://whapi.cloud/docs). HTTP method and API path are set in the tool configuration (not by the model). POST, PUT, PATCH, and DELETE can create, change, or delete data in your WhatsApp channel.
+    zh_Hans: 调用 Whapi 文档中的接口。HTTP 方法与路径在工具配置中设定（非模型自动选择）。POST、PUT、PATCH、DELETE 可能在频道中创建、修改或删除数据。
+  llm: Run a preconfigured Whapi HTTP call. method and path are fixed in the tool node; only supply query_json/body_json when mapped from workflow context. GET reads data; POST/PUT/PATCH write; DELETE removes resources per Whapi API semantics.
 parameters:
   - name: method
     type: select
@@ -19,8 +19,8 @@ parameters:
       en_US: HTTP method
       zh_Hans: HTTP 方法
     human_description:
-      en_US: HTTP method for the Whapi API call
-      zh_Hans: Whapi API 请求的 HTTP 方法
+      en_US: GET reads data. POST, PUT, and PATCH create or update. DELETE removes messages or other resources — choose deliberately.
+      zh_Hans: GET 读取；POST/PUT/PATCH 创建或更新；DELETE 删除消息等资源，请谨慎选择。
     options:
       - value: GET
         label:
@@ -40,14 +40,13 @@ parameters:
   - name: path
     type: string
     required: true
-    form: llm
+    form: form
     label:
       en_US: API path
       zh_Hans: API 路径
     human_description:
-      en_US: Path on gate.whapi.cloud starting with /, e.g. /limits
-      zh_Hans: 以 / 开头的 API 路径
-    llm_description: Path relative to gate.whapi.cloud, must start with /, e.g. /settings or /messages/text
+      en_US: Path on gate.whapi.cloud starting with / (e.g. /limits). Set here in the workflow — the model must not choose arbitrary paths.
+      zh_Hans: 以 / 开头的路径（如 /limits）。在工作流中配置，勿由模型随意指定路径。
   - name: query_json
     type: string
     required: false

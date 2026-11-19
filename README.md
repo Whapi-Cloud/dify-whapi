@@ -36,7 +36,7 @@ flowchart LR
 - **Triggers:** new and updated messages; group membership and group-related events (see trigger README for payloads).
 - **Actions:** send text and media; fetch a message by ID; check whether a phone number is on WhatsApp; any other Whapi API operation via **Custom API Request** (see below).
 
-We ship **dedicated tools** for the operations most workflows need every day. The Whapi API has many more endpoints — we do not duplicate each one as a separate Dify tool. **Custom API Request** is the supported way to call **any** endpoint from the [Whapi API reference](https://whapi.cloud/docs): pick HTTP method, path, and body against `gate.whapi.cloud`, using the same channel token and base URL as the built-in tools. When a dedicated tool exists for your task, it is usually simpler; use Custom API Request for everything else the docs describe.
+We ship **dedicated tools** for the operations most workflows need every day. The Whapi API has many more endpoints — we do not duplicate each one as a separate Dify tool. **Custom API Request** calls other documented endpoints on `gate.whapi.cloud`. **Method and path are set in the workflow** (not by the model); POST/PUT/PATCH/DELETE can change or delete channel data — see [whapi-tool/README.md#custom-api-request-safety](whapi-tool/README.md#custom-api-request-safety).
 
 ## Prerequisites
 

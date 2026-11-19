@@ -17,7 +17,7 @@ When you configure credentials and use tools, the plugin may send:
 | **Channel access token** (Bearer) | Authenticate API calls on your behalf |
 | **Phone numbers and chat IDs** | Message delivery and contact checks |
 | **Message text and media references** | Send text/media messages via the API |
-| **API paths and JSON bodies** | Tool operations, including **Custom API Request** (`api_request`) when you choose method, path, and body |
+| **API paths and JSON bodies** | Tool operations, including **Custom API Request** (`api_request`) for the method, path, and JSON you configure; mutating methods can change or delete data in your channel per [Whapi API](https://whapi.cloud/docs) semantics |
 
 Responses from Whapi (message IDs, statuses, contact check results, etc.) are returned to your Dify workflow or agent.
 
