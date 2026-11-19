@@ -4,10 +4,15 @@ from __future__ import annotations
 
 import json
 from typing import Any
+from urllib.parse import urlparse
 
 import requests
 
 DEFAULT_BASE_URL = "https://gate.whapi.cloud"
+
+# Official Whapi API gateway hosts only (Bearer token must not be sent elsewhere).
+ALLOWED_API_HOSTS: frozenset[str] = frozenset({"gate.whapi.cloud"})
+
 EVENT_METHODS = ("post", "put", "delete", "patch")
 
 
@@ -18,9 +23,44 @@ class WhapiError(Exception):
         self.body = body
 
 
+def resolve_base_url(base_url: str | None = None) -> str:
+    """Return a normalized HTTPS base URL; only ALLOWED_API_HOSTS are permitted."""
+    if base_url is None or not str(base_url).strip():
+        return DEFAULT_BASE_URL
+
+    raw = str(base_url).strip().rstrip("/")
+    if not raw.startswith(("http://", "https://")):
+        raw = f"https://{raw}"
+
+    parsed = urlparse(raw)
+    if parsed.scheme not in ("http", "https"):
+        raise ValueError("API base URL must use http or https")
+
+    host = (parsed.hostname or "").lower()
+    if host not in ALLOWED_API_HOSTS:
+        allowed = ", ".join(sorted(ALLOWED_API_HOSTS))
+        raise ValueError(f"API base URL host must be one of: {allowed}")
+
+    if parsed.path not in ("", "/"):
+        raise ValueError("API base URL must not include a path")
+    if parsed.query or parsed.fragment:
+        raise ValueError("API base URL must not include query or fragment")
+    if parsed.username or parsed.password:
+        raise ValueError("API base URL must not include user credentials")
+
+    if parsed.scheme != "https":
+        raise ValueError("API base URL must use https")
+
+    port = parsed.port
+    if port not in (None, 443):
+        raise ValueError("API base URL must use the default HTTPS port")
+
+    return f"https://{host}"
+
+
 class WhapiClient:
-    def __init__(self, access_token: str, base_url: str = DEFAULT_BASE_URL):
-        self.base_url = base_url.rstrip("/")
+    def __init__(self, access_token: str, base_url: str | None = None):
+        self.base_url = resolve_base_url(base_url)
         self.session = requests.Session()
         self.session.headers.update(
             {
@@ -41,6 +81,8 @@ class WhapiClient:
     ) -> Any:
         if not path.startswith("/"):
             path = f"/{path}"
+        if "://" in path:
+            raise WhapiError("API path must be relative to the Whapi gateway host", status_code=None)
         url = f"{self.base_url}{path}"
         response = self.session.request(
             method=method.upper(),

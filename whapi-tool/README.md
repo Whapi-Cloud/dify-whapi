@@ -34,10 +34,9 @@ In Dify → **Plugins** → **Whapi** provider:
 | Field | Description |
 |-------|-------------|
 | **Access Token** | Channel token from [Whapi Panel](https://panel.whapi.cloud/) |
-| **API base URL** | **`https://gate.whapi.cloud`** — default and recommended for every standard Whapi.Cloud channel. Leave unchanged unless Whapi support directs otherwise. |
 | **Channel ID** | Optional metadata field |
 
-All tools and **Custom API Request** call this host (path + method from the [API docs](https://whapi.cloud/docs)). Credential validation uses `GET /limits`.
+All API traffic uses the official gateway **`https://gate.whapi.cloud` only** (not configurable in the plugin). Tools and **Custom API Request** use relative paths from the [API docs](https://whapi.cloud/docs). Credential validation uses `GET /limits`.
 
 ## Tools
 

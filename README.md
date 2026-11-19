@@ -46,7 +46,7 @@ We ship **dedicated tools** for the operations most workflows need every day. Th
 | Minimum Dify version | **1.0.0** (per `manifest.yaml`) | **1.10.0** (trigger subscriptions) |
 | [Whapi.Cloud](https://whapi.cloud/) account and paired channel | Yes | Yes |
 | Channel **access token** from [Whapi Panel](https://panel.whapi.cloud/) | Yes | Yes |
-| API host | **`https://gate.whapi.cloud`** (default in both plugins; do not change unless Whapi support says otherwise) | Same |
+| API host | **`https://gate.whapi.cloud` only** (fixed in code; not configurable) | Same |
 | Plugin runtime | Python **3.12**, `dify-plugin` **≥ 0.9.0** | Same |
 
 Whapi plans, sandbox limits, and billing are described on [whapi.cloud](https://whapi.cloud/) and in the [API documentation](https://whapi.cloud/docs). This integration does not change those limits.

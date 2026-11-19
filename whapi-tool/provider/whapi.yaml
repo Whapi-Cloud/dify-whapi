@@ -5,8 +5,8 @@ identity:
     en_US: Whapi.Cloud
     zh_Hans: Whapi.Cloud
   description:
-    en_US: WhatsApp API gateway for sending messages and checking contacts.
-    zh_Hans: 用于发送消息与检查联系人的 WhatsApp API 网关。
+    en_US: WhatsApp API via https://gate.whapi.cloud only — send messages, check contacts, and custom API calls.
+    zh_Hans: 仅通过 https://gate.whapi.cloud 使用 WhatsApp API — 发送消息、检查联系人及自定义 API 调用。
   icon: icon.svg
   tags:
     - social
@@ -30,16 +30,6 @@ credentials_for_provider:
     label:
       en_US: Channel ID (optional)
       zh_Hans: 频道 ID（可选）
-  api_base_url:
-    type: text-input
-    required: false
-    default: https://gate.whapi.cloud
-    label:
-      en_US: API base URL
-      zh_Hans: API 基础 URL
-    help:
-      en_US: Default and recommended for all Whapi.Cloud channels — https://gate.whapi.cloud. Leave as default unless Whapi support gives you a different gateway URL.
-      zh_Hans: Whapi.Cloud 频道默认使用 https://gate.whapi.cloud。除非 Whapi 支持另有说明，请保持默认。
 tools:
   - tools/message_send.yaml
   - tools/message_get.yaml

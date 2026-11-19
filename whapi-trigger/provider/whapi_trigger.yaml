@@ -5,8 +5,8 @@ identity:
     en_US: Whapi Trigger
     zh_Hans: Whapi 触发器
   description:
-    en_US: Receive Whapi webhook events for messages and groups.
-    zh_Hans: 接收 Whapi 消息与群组 webhook 事件。
+    en_US: Whapi webhooks for messages and groups; channel API calls use https://gate.whapi.cloud only.
+    zh_Hans: Whapi 消息与群组 webhook；频道 API 仅使用 https://gate.whapi.cloud。
   icon: icon.svg
   tags: []
 
@@ -22,16 +22,6 @@ subscription_constructor:
         en_US: Channel token from Whapi Panel
         zh_Hans: 来自 Whapi 面板的频道令牌
       url: https://panel.whapi.cloud/
-    api_base_url:
-      type: text-input
-      required: false
-      default: https://gate.whapi.cloud
-      label:
-        en_US: API base URL
-        zh_Hans: API 基础 URL
-      help:
-        en_US: Default and recommended — https://gate.whapi.cloud. Leave as default unless Whapi support gives you a different gateway URL.
-        zh_Hans: 默认推荐 https://gate.whapi.cloud。除非 Whapi 支持另有说明，请保持默认。
   parameters:
     - name: event_families
       type: checkbox

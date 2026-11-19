@@ -23,12 +23,12 @@ Responses from Whapi (message IDs, statuses, contact check results, etc.) are re
 
 ## API host
 
-By default and for standard Whapi.Cloud channels, all traffic goes to **`https://gate.whapi.cloud`** (also declared under `network.domains` in `manifest.yaml`). The optional **API base URL** credential field exists for exceptional setups directed by Whapi support; if you leave the default, requests stay on `gate.whapi.cloud`.
+All plugin outbound API traffic uses **only** the official Whapi gateway **`https://gate.whapi.cloud`** (hardcoded allowlist; declared under `network.domains` in `manifest.yaml`). You cannot point the plugin at another host.
 
 ## Data we do not collect
 
 - The plugin does not write customer content to its own database or long-term storage.
-- With the default API base URL, the plugin does not send data to hosts other than `gate.whapi.cloud`.
+- The plugin does not send credentials or API payloads to hosts other than `gate.whapi.cloud`.
 
 ## Credentials
 

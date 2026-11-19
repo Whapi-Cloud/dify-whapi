@@ -25,12 +25,12 @@ When you create a subscription, the plugin **merges** your Dify callback URL int
 
 ## API host
 
-Webhook registration uses the channel **API base URL** credential. Default and recommended: **`https://gate.whapi.cloud`**. Change only if Whapi support directs you to another gateway.
+Subscription setup (reading/updating channel webhooks) uses **only** **`https://gate.whapi.cloud`** (hardcoded allowlist; declared in `manifest.yaml` under `network.domains`). The API host is not configurable in the plugin.
 
 ## Data we do not collect
 
 - No long-term storage of webhook bodies by this plugin code.
-- With the default API base URL, outbound API calls use only `gate.whapi.cloud` (declared in `manifest.yaml` under `network.domains`).
+- Outbound API calls from this plugin go only to `gate.whapi.cloud`.
 
 ## Credentials
 

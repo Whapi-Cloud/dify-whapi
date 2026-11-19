@@ -17,7 +17,7 @@ from dify_plugin.errors.trigger import (
 )
 from dify_plugin.interfaces.trigger import Trigger, TriggerSubscriptionConstructor
 
-from whapi_lib.client import DEFAULT_BASE_URL, WhapiClient, WhapiError
+from whapi_lib.client import WhapiClient, WhapiError
 
 _SUBSCRIPTION_TTL_SECONDS = 30 * 24 * 60 * 60
 _EVENT_TO_NAME = {
@@ -30,8 +30,7 @@ def _client_from_credentials(credentials: Mapping[str, Any]) -> WhapiClient:
     token = credentials.get("access_token")
     if not token:
         raise TriggerProviderCredentialValidationError("Access token is required")
-    base = str(credentials.get("api_base_url") or DEFAULT_BASE_URL)
-    return WhapiClient(str(token), base)
+    return WhapiClient(str(token))
 
 
 class WhapiTrigger(Trigger):
@@ -70,6 +69,8 @@ class WhapiTriggerSubscriptionConstructor(TriggerSubscriptionConstructor):
     def _validate_api_key(self, credentials: dict[str, Any]) -> None:
         try:
             _client_from_credentials(credentials).validate_credentials()
+        except TriggerProviderCredentialValidationError:
+            raise
         except WhapiError as exc:
             raise TriggerProviderCredentialValidationError(str(exc)) from exc
 

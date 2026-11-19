@@ -36,7 +36,8 @@ When you create a trigger **subscription** for provider **Whapi Trigger**:
 | Field | Description |
 |-------|-------------|
 | **Access Token** | Channel token from [Whapi Panel](https://panel.whapi.cloud/) |
-| **API base URL** | **`https://gate.whapi.cloud`** — default and recommended; used when registering webhooks on your channel. Leave unchanged unless Whapi support directs otherwise. |
+
+Webhook registration uses **`https://gate.whapi.cloud` only** (not configurable).
 
 ## Workflow setup (typical auto-reply)
 
@@ -44,7 +45,7 @@ When you create a trigger **subscription** for provider **Whapi Trigger**:
 2. Add an **Integration Trigger** start node and choose **Whapi Trigger** → event (**Whapi Messages** and/or **Whapi Groups**).
 3. **Publish** the workflow so Dify has a production callback URL (use the test URL only for debugging).
 4. In Dify → trigger **Subscriptions**, create a subscription for **Whapi Trigger**:
-   - Enter **Access Token** (and base URL if needed).
+   - Enter **Access Token**.
    - Under **Trigger on**, select **Messages events** and/or **Groups events**.
 5. On save, the plugin calls Whapi `PATCH /settings` and **merges** Dify’s callback URL into your channel webhooks.
 6. Add workflow steps (LLM, logic, etc.). To send a WhatsApp reply, use the [**Whapi Tool**](https://github.com/Whapi-Cloud/dify-whapi/tree/main/whapi-tool) plugin in a later node.
